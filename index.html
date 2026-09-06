@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Free Kundali Maker Nepal 2026 – Instant Janma Kundali & Birth Chart</title>
   <meta name="description" content="Make your free kundali online instantly. Get your janma kundali, navamsa chart, nakshatra, and vimshottari dasha using Lahiri ayanamsa.">
   <meta name="keywords" content="kundali maker nepal, free janma kundali, online kundali, birth chart nepal, vimshottari dasha calculator, nakshatra calculator, lahiri ayanamsa">
@@ -21,7 +21,9 @@
       --border: #2a2e30;
       --highlight: #232729;
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       padding: 0;
@@ -29,84 +31,206 @@
       color: var(--text);
       font-family: 'Epilogue', sans-serif;
       line-height: 1.5;
+      -webkit-tap-highlight-color: transparent;
     }
-    .wrap { max-width: 900px; margin: 0 auto; padding: 20px 15px; }
-    header.hero { text-align: center; margin-bottom: 30px; }
-    header.hero h1 { font-size: 2rem; color: var(--accent); margin-bottom: 10px; }
-    header.hero p { color: var(--muted); font-size: 0.95rem; max-width: 650px; margin: 0 auto; }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px 12px;
+    }
+
+    header.hero {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 0 8px;
+    }
+
+    header.hero h1 {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: var(--accent);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    header.hero p {
+      color: var(--muted);
+      font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 24px;
+      padding: 16px;
+      margin-bottom: 20px;
     }
-    .field-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-    .field { display: flex; flex-direction: column; }
-    .field label { font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
-    .field .hint { font-size: 0.75rem; color: var(--muted); font-weight: normal; }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .field label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .field .hint {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: normal;
+    }
+
     input, select {
       background: var(--bg);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 10px;
-      border-radius: 4px;
-      font-size: 0.9rem;
+      padding: 12px 10px;
+      border-radius: 6px;
+      font-size: 16px; /* 16px prevents iOS browser auto-zoom */
       outline: none;
+      width: 100%;
     }
-    input:focus, select:focus { border-color: var(--accent); }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+
     .btn {
       background: var(--accent);
       color: #000;
       font-weight: 700;
       border: none;
-      padding: 12px 20px;
-      border-radius: 4px;
+      padding: 14px 20px;
+      border-radius: 6px;
       cursor: pointer;
       width: 100%;
-      margin-top: 15px;
+      margin-top: 16px;
       font-size: 1rem;
+      transition: opacity 0.2s;
     }
+
     .btn:hover { opacity: 0.9; }
-    
+
     .profile-card { text-align: center; }
-    .profile-avatar { font-size: 2.5rem; color: var(--accent); margin-bottom: 5px; }
-    .profile-name { font-size: 1.4rem; font-weight: 700; }
-    .profile-line { color: var(--muted); font-size: 0.9rem; margin: 4px 0; }
+    .profile-avatar { font-size: 2.2rem; color: var(--accent); margin-bottom: 4px; }
+    .profile-name { font-size: clamp(1.2rem, 3.5vw, 1.4rem); font-weight: 700; }
+    .profile-line { color: var(--muted); font-size: 0.85rem; margin: 4px 0; }
+
     .highlight-box {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
       gap: 10px;
       margin-top: 15px;
       background: var(--highlight);
-      padding: 15px;
+      padding: 12px;
       border-radius: 6px;
     }
+
     .hl-item { text-align: left; }
     .hl-k { font-size: 0.75rem; color: var(--muted); display: block; text-transform: capitalize; }
-    .hl-v { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+    .hl-v { font-size: 0.88rem; font-weight: 600; color: var(--text); word-break: break-word; }
 
-    .lucky-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
-    .lucky-item { background: var(--highlight); padding: 10px; border-radius: 4px; text-align: center; }
+    .lucky-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 10px;
+    }
+
+    .lucky-item {
+      background: var(--highlight);
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
+    }
+
     .li-label { font-size: 0.75rem; color: var(--muted); }
-    .li-value { font-size: 0.95rem; font-weight: 600; color: var(--accent); }
+    .li-value { font-size: 0.9rem; font-weight: 600; color: var(--accent); }
 
-    .charts-side-by-side { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 20px 0; }
+    .charts-side-by-side {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin: 15px 0;
+    }
+
     .chart-block { text-align: center; }
     .chart-block-title { font-size: 1rem; color: var(--accent); margin-bottom: 10px; }
-    .chart-svg-wrap svg { width: 100%; max-width: 340px; height: auto; background: #161819; border-radius: 6px; border: 1px solid var(--border); }
+    
+    .chart-svg-wrap {
+      display: flex;
+      justify-content: center;
+    }
 
-    .planet-table, .dasha-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.85rem; }
-    .planet-table th, .planet-table td, .dasha-table th, .dasha-table td {
+    .chart-svg-wrap svg {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      background: #161819;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    /* Horizontal scroll container for tables on smaller mobile viewports */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 12px;
+    }
+
+    .planet-table, .dasha-table {
+      width: 100%;
+      min-width: 480px; /* Ensures table remains legible and scrollable on small screens */
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .planet-table th, .planet-table td, 
+    .dasha-table th, .dasha-table td {
       border: 1px solid var(--border);
       padding: 8px 10px;
       text-align: left;
     }
-    .planet-table th, .dasha-table th { background: var(--highlight); color: var(--accent); }
 
-    .dasha-row.active { background: rgba(201, 163, 78, 0.15); border-left: 3px solid var(--accent); }
+    .planet-table th, .dasha-table th {
+      background: var(--highlight);
+      color: var(--accent);
+      white-space: nowrap;
+    }
 
-    .section-title { font-size: 1.2rem; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 6px; margin-bottom: 12px; }
+    .dasha-row.active {
+      background: rgba(201, 163, 78, 0.15);
+      border-left: 3px solid var(--accent);
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .wrap { padding: 30px 20px; }
+      .card { padding: 24px; }
+      .field-grid { gap: 16px; }
+      .highlight-box { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); padding: 15px; }
+      .planet-table, .dasha-table { min-width: 100%; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -194,41 +318,45 @@
 
         <section class="card">
           <h2 class="section-title">Planetary Positions</h2>
-          <table class="planet-table">
-            <thead>
-              <tr>
-                <th>Planet</th>
-                <th>Sign</th>
-                <th>Degree</th>
-                <th>Nakshatra</th>
-                <th>Pada</th>
-                <th>House</th>
-              </tr>
-            </thead>
-            <tbody id="planetTableBody"></tbody>
-          </table>
+          <div class="table-container">
+            <table class="planet-table">
+              <thead>
+                <tr>
+                  <th>Planet</th>
+                  <th>Sign</th>
+                  <th>Degree</th>
+                  <th>Nakshatra</th>
+                  <th>Pada</th>
+                  <th>House</th>
+                </tr>
+              </thead>
+              <tbody id="planetTableBody"></tbody>
+            </table>
+          </div>
         </section>
 
         <!-- Vimshottari Dasha Section -->
         <section class="card">
           <h2 class="section-title">Vimshottari Dasha Timeline</h2>
           <p style="color:var(--muted); font-size:0.85rem; margin-top:-6px; margin-bottom:12px;">Complete Mahadasha timeline starting from birth based on Moon's Nakshatra position.</p>
-          <table class="dasha-table">
-            <thead>
-              <tr>
-                <th>Mahadasha Lord</th>
-                <th>Duration</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody id="dashaTableBody"></tbody>
-          </table>
+          <div class="table-container">
+            <table class="dasha-table">
+              <thead>
+                <tr>
+                  <th>Mahadasha Lord</th>
+                  <th>Duration</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="dashaTableBody"></tbody>
+            </table>
+          </div>
         </section>
       </div>
 
-      <footer style="text-align: center; color: var(--muted); font-size: 12px; margin-top: 40px;">
+      <footer style="text-align: center; color: var(--muted); font-size: 12px; margin-top: 30px; padding-bottom: 20px;">
         Last updated: <time datetime="2026-09-06">September 6, 2026</time>
       </footer>
     </main>
@@ -598,6 +726,9 @@
           `;
           dashaTbody.appendChild(tr);
         });
+
+        // Auto-scroll to results on mobile
+        document.getElementById('downloadArea').scrollIntoView({ behavior: 'smooth' });
       });
     });
   </script>
